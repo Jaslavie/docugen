@@ -14,8 +14,9 @@ def pdf_to_text(pdf_buffer: bytes) -> str:
 
 def text_to_jsonl(texts: list[str], output_file: str = "training_data.jsonl") -> str:
     """
-    convert text array to a jsonl file and save it to the output file
+    convert text array to a jsonl file and save it to the output file and store context for the model
     """
+    
     prompts = [
         "Design a comprehensive document including logistics, schedules, and guidelines for the UCI Design-a-thon event.",
         "Design a document for participants including detailed logistics and schedules for the entire event.",
