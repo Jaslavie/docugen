@@ -12,7 +12,7 @@ def pdf_to_text(pdf_buffer: bytes) -> str:
     text = extract_text('temp.pdf')
     return text
 
-def text_to_json(texts: list[str], output_file: str = "training_data.jsonl") -> str:
+def text_to_jsonl(texts: list[str], output_file: str = "training_data.jsonl") -> str:
     """
     convert text array to a jsonl file and save it to the output file
     """
@@ -22,11 +22,11 @@ def text_to_json(texts: list[str], output_file: str = "training_data.jsonl") -> 
             training_example = {
                 "messages": [
                     {"role": "system", "content": "You are a documentation specialist that writes documents for a designathon at UCI."},
-                    {"role": "user", "content": "Design a document for participants including detailed logistics and schedules for the entire event."},
+                    {"role": "user", "content": "Design a comprehensive document including logistics, schedules, and guidelines for the UCI Design-a-thon event."},
                     {"role": "assistant", "content": text}
-            ]
-        }
-        # write each JSON object to a new line in the file
-        f.write(json.dumps(training_example) + '\n')
+                ]
+            }
+            # write the each training example to a new line in the jsonl file
+            f.write(json.dumps(training_example) + '\n')
 
     return output_file
